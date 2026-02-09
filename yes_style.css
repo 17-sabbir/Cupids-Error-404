@@ -1,0 +1,16 @@
+@import url("./styles.css");
+
+/* Keep the same layout as the first page; only adjust the Yes page text spacing. */
+.container {
+    gap: 8px;
+}
+
+/* The base h1 in styles.css already matches the first page.
+   This ensures the two headings don't look cramped. */
+.gif_container {
+    margin-top: 6px;
+}
+
+.gif_container img {
+    transform: scale(1);
+}

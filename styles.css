@@ -1,0 +1,217 @@
+body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 5px;
+  font-family: 'Arial', sans-serif;
+  flex-direction: column;
+  background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0) 60%),
+    radial-gradient(900px 500px at 90% 20%, rgba(255, 105, 180, 0.12), rgba(255, 255, 255, 0) 55%),
+    linear-gradient(180deg, #f9e3e3, #ffffff);
+}
+
+@supports (height: 100svh) {
+  body {
+    min-height: 100svh;
+  }
+}
+
+/* Prefer dynamic viewport height when supported (better on mobile toolbars). */
+@supports (height: 100dvh) {
+  body {
+    min-height: 100dvh;
+  }
+}
+
+.container {
+  width: min(560px, 100%);
+  text-align: center;
+  padding: 3px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  position: relative;
+  height: calc(100vh - 10px);
+  min-height: calc(100vh - 10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@supports (height: 100svh) {
+  .container {
+    height: calc(100svh - 10px);
+    min-height: calc(100svh - 10px);
+  }
+}
+
+@supports (height: 100dvh) {
+  .container {
+    height: calc(100dvh - 10px);
+    min-height: calc(100dvh - 10px);
+  }
+}
+
+h1 {
+  margin: 10px 0 0;
+  font-size: clamp(1.7rem, 2.7vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #7a1b1b;
+}
+
+.title-heart {
+  display: inline-block;
+  transform: translateY(2px);
+}
+
+.buttons {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-height: 86px;
+  padding: 3px;
+  align-items: center;
+}
+
+.no-button.is-evasive {
+  position: absolute;
+  z-index: 2;
+}
+
+.no-button:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.yes-button,
+.no-button {
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  will-change: transform;
+  user-select: none;
+}
+
+.yes-button {
+  background: linear-gradient(180deg, #ff4d7d, #e11d48);
+  color: white;
+  box-shadow: 0 10px 22px rgba(225, 29, 72, 0.25);
+}
+
+.no-button {
+  background: rgba(255, 255, 255, 0.7);
+  color: #7a1b1b;
+  border-color: rgba(122, 27, 27, 0.22);
+}
+
+.yes-button:hover,
+.no-button:hover {
+  transform: translateY(-1px);
+}
+
+.yes-button:active,
+.no-button:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.yes-button:focus-visible,
+.no-button:focus-visible {
+  outline: 3px solid rgba(225, 29, 72, 0.25);
+  outline-offset: 2px;
+}
+
+.gif_container {
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.6);
+  flex: 1 1 auto;
+  display: flex;
+  min-height: 0;
+}
+
+.gif_container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  transform: scale(0.9);
+  transform-origin: center center;
+}
+
+/* Mobile-first: fit within visible mobile height */
+@supports (height: 1svh) {
+  .gif_container img {
+    max-height: none;
+  }
+}
+
+@supports (height: 1dvh) {
+  .gif_container img {
+    max-height: none;
+  }
+}
+
+/* Web/Desktop: allow a larger hero image than mobile */
+@media (min-width: 768px) {
+  .container {
+    width: min(640px, 100%);
+  }
+
+  .gif_container img {
+    max-height: none;
+  }
+}
+
+@media (min-width: 768px) {
+  @supports (height: 1dvh) {
+    .gif_container img {
+      max-height: none;
+    }
+  }
+}
+
+/* Very short screens: keep everything inside without overflow. */
+@media (max-height: 700px) {
+  body {
+    padding: 5px;
+  }
+
+  .buttons {
+    margin-top: 12px;
+    min-height: 74px;
+  }
+
+  @supports (height: 1dvh) {
+    .gif_container img {
+      max-height: none;
+    }
+  }
+
+  @supports (height: 1svh) {
+    .gif_container img {
+      max-height: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .yes-button,
+  .no-button {
+    transition: none;
+  }
+}
